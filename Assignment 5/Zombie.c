@@ -1,22 +1,22 @@
-#include<unistd.h>
-#include<sys/types.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/wait.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
 int main() {
-	int pid,stat;
-	puts("Starting Parent...\n");
-	pid=fork();
-	if(pid>0){
-	printf("Parent:PID=%d\tPPID=%d\n",getpid(),getppid());
-	sleep(15);
-	wait(&stat);
-	}
-	if(pid==0){
-		printf("Child: PID=%d\tPPID=%d\n",getpid(),getppid());
-		sleep(8);
-		printf("The child has died");
-	}
-	system("ps");
-	return 0;
+    pid_t p = fork();
+    if (p > 0) {
+        printf("Parent process with ID: %d\n", getpid());
+        printf("Child process ID: %d\n", p);
+        sleep(10);
+        printf("Parent process waking up after sleep.\n");
+    } 
+    else if (p == 0) {
+        printf("Child process with ID: %d is terminating.\n", getpid());
+        exit(0); 
+    } 
+    else {
+        printf("Fork failed.\n");
+        return 1;
+    }
+    return 0;
 }
