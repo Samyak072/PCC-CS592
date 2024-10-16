@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/types.h>
 void handle_signal(int signal_num) {
     printf("\nReceived signal %d, terminating the process.\n", signal_num);
     signal(SIGINT, SIG_DFL);
