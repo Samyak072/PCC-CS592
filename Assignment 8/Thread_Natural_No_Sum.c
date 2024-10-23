@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<pthread.h>
+#include <unistd.h>
 void *sum (void *arg) {
 	int n;
 	printf("Enter the number: ");
